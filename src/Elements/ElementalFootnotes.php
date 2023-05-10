@@ -2,18 +2,18 @@
 
 namespace Pikselin\Elemental\Footnotes {
 
-use DNADesign\Elemental\Models\BaseElement;
-use SilverStripe\Forms\CheckboxField;
-use SilverStripe\Forms\FieldList;
-use SilverStripe\Forms\GridField\GridField;
-use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter;
-use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
-use SilverStripe\Forms\GridField\GridFieldFilterHeader;
-use SilverStripe\ORM\DataObject;
-use SilverStripe\ORM\FieldType\DBHTMLText;
-use SilverStripe\View\Requirements;
-use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
-use function _t;
+    use DNADesign\Elemental\Models\BaseElement;
+    use SilverStripe\Forms\CheckboxField;
+    use SilverStripe\Forms\FieldList;
+    use SilverStripe\Forms\GridField\GridField;
+    use SilverStripe\Forms\GridField\GridFieldAddExistingAutocompleter;
+    use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
+    use SilverStripe\Forms\GridField\GridFieldFilterHeader;
+    use SilverStripe\ORM\DataObject;
+    use SilverStripe\ORM\FieldType\DBHTMLText;
+    use SilverStripe\View\Requirements;
+    use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
+    use function _t;
 
     class ElementalFootnotes extends BaseElement {
 
@@ -45,8 +45,8 @@ use function _t;
          */
         function __construct($record = null, $isSingleton = false, $model = null) {
             parent::__construct($record, $isSingleton, $model);
-            
-            Requirements::javascript('pikselin/silverstripe-elemental-footnotes:client/js/ElementalFootnotes.js',['defer' => true]);
+
+            Requirements::javascript('pikselin/silverstripe-elemental-footnotes:client/js/ElementalFootnotes.js', ['defer' => true]);
         }
 
         /**
@@ -78,10 +78,7 @@ use function _t;
                     $anchors[] = $v->LinkIDSrc();
                 }
             }
-
-
             $anchors = array_unique($anchors);
-
             $this->extend('updateAnchorsInContent', $anchors);
             return $anchors;
         }

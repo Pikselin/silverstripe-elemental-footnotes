@@ -3,6 +3,7 @@
 namespace Pikselin\Elemental\Footnotes {
 
 use SilverStripe\Core\Manifest\ModuleLoader;
+use SilverStripe\Core\Manifest\ModuleResourceLoader;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use SilverStripe\Forms\HTMLEditor\TinyMCEConfig;
 use SilverStripe\Forms\LiteralField;
@@ -29,13 +30,13 @@ use SilverStripe\Security\Security;
         ];
         private static $default_sort = 'NotesOrder ASC';
         
-        public function LinkIDSrc() {
-            return 'footnote-item-' . $this->ID;
-        }
+//        public function LinkIDSrc() {
+//            return 'footnote-item-' . $this->ID;
+//        }
         
         public function LinkIDRef() {
             if ((int) $this->ID > 0) {
-                return DBField::create_field('Text', $this->LinkIDSrc());
+                return DBField::create_field('Text', $this->ID);
             } else {
                 return DBField::create_field('Text', 'ID generate when saved');
             }
@@ -43,8 +44,9 @@ use SilverStripe\Security\Security;
 
         public function LinkID() {
             if ((int) $this->ID > 0) {
-                $anchor = $this->LinkIDRef();
-                return '<p>Link ID: <strong>' . $anchor . '</strong> This is the element ID for this note. Use this when creating anchor links in content editors. For now, you must use the source view and manually enter the full href link. See below for the full link HTML to paste into the source view.</p><p>' . htmlentities('<a class="footnote-link" href="#' . $anchor . '">ENTER LINK TEXT HERE</a>') . '</p>';
+                //$anchor = $this->LinkIDRef();
+                $dialogImg = ModuleResourceLoader::singleton()->resolveURL('pikselin/silverstripe-elemental-footnotes:client/images/footnote-dialog.png');
+                return '<h3>Link ID: <strong style="color: red">' . $this->ID . '</strong><h3><p>This is the element ID for this note. Use this when creating footnote links in content editors. Enter the ID and a title for the link and then click ok in the Footnote link dialog.</p><p><img src="'.$dialogImg.'" alt="example dialog"/></p>';
             } else {
                 return '<i>Save this note first in order to generate the ID to link to.</i>';
             }
