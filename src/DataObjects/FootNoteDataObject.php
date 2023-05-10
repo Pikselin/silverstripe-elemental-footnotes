@@ -46,60 +46,10 @@ use SilverStripe\Security\Security;
             if ((int) $this->ID > 0) {
                 //$anchor = $this->LinkIDRef();
                 $dialogImg = ModuleResourceLoader::singleton()->resolveURL('pikselin/silverstripe-elemental-footnotes:client/images/footnote-dialog.png');
-                return '<h3>Link ID: <strong style="color: red">' . $this->ID . '</strong><h3><p>This is the element ID for this note. Use this when creating footnote links in content editors. Enter the ID and a title for the link and then click ok in the Footnote link dialog.</p><p><img src="'.$dialogImg.'" alt="example dialog"/></p>';
+                return '<h3>Link ID: <strong style="color: red">' . $this->ID . '</strong><h3><p>This is the element ID for this note. Use this when creating footnote links in content editors. Enter the ID and a title for the link and then click ok in the Footnote link dialog.</p><p><strong>Note:</strong> Using any other method of creating the footnote link may result in an error or broken link.</p><p><img src="'.$dialogImg.'" alt="example dialog"/></p>';
             } else {
                 return '<i>Save this note first in order to generate the ID to link to.</i>';
             }
-        }
-        
-        private function HTMLEditorReduced() {
-            $ss_admin = ModuleLoader::inst()->getManifest()->getModule('silverstripe/admin');
-            $ss_asset = ModuleLoader::inst()->getManifest()->getModule('silverstripe/asset-admin');
-            $ss_cms = ModuleLoader::inst()->getManifest()->getModule('silverstripe/cms');
-
-            $charmap_append = [
-                ['256', 'A - macron'],
-                ['274', 'E - macron'],
-                ['298', 'I - macron'],
-                ['332', 'O - macron'],
-                ['362', 'U - macron'],
-                ['257', 'a - macron'],
-                ['275', 'e - macron'],
-                ['299', 'i - macron'],
-                ['333', 'o - macron'],
-                ['363', 'u - macron'],
-            ];
-
-            $footnote = TinyMCEConfig::get('footnote');
-
-            $footnote->enablePlugins([
-                'sslink' => $ss_admin->getResource('client/dist/js/TinyMCE_sslink.js'),
-                'sslinkexternal' => $ss_admin->getResource('client/dist/js/TinyMCE_sslink-external.js'),
-                'sslinkemail' => $ss_admin->getResource('client/dist/js/TinyMCE_sslink-email.js'),
-                'sslinkinternal' => $ss_cms->getResource('client/dist/js/TinyMCE_sslink-internal.js'),
-                'sslinkanchor' => $ss_cms->getResource('client/dist/js/TinyMCE_sslink-anchor.js'),
-                'ssmedia' => $ss_asset->getResource('client/dist/js/TinyMCE_ssmedia.js'),
-                'ssembed' => $ss_asset->getResource('client/dist/js/TinyMCE_ssembed.js'),
-                'sslinkfile' => $ss_asset->getResource('client/dist/js/TinyMCE_sslink-file.js'),
-                'hr' => null
-            ]);
-            $footnote->setOptions([
-                'friendly_name' => 'reduced',
-                'skin' => 'silverstripe',
-                'browser_spellcheck' => false,
-                'importcss_append' => true,
-                'importcss_selector_filter' => '.exclude-styles-',
-            ]);
-            $footnote->enablePlugins([
-                'charmap', 'hr'
-            ]); 
-            
-            $footnote->setOption('charmap_append', $charmap_append);
-            $footnote->setButtonsForLine(1, 'bold', 'italic', 'removeformat', '|', 'hr', 'bullist', 'numlist', '|', 'sslink', '|', 'charmap', 'ssmedia', '|', 'code');
-            $footnote->setButtonsForLine(2, '');
-            
-            return 'footnote';
-            
         }
 
         public function getCMSFields() {
@@ -110,7 +60,7 @@ use SilverStripe\Security\Security;
 
             $LinkID = LiteralField::create('LinkID', $this->LinkID());
             
-            $Content = HTMLEditorField::create('Content', 'Footnote text', $this->Content, $this->HTMLEditorReduced())->setRows(5);
+            $Content = HTMLEditorField::create('Content', 'Footnote text', $this->Content, 'footnote')->setRows(5);
 
             $fields->addFieldToTab('Root.Main', $Content);
             $fields->addFieldToTab('Root.Main', $LinkID);
