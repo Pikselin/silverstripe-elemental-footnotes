@@ -2,10 +2,8 @@
 
 namespace Pikselin\Elemental\Footnotes {
 
-use SilverStripe\Core\Manifest\ModuleLoader;
 use SilverStripe\Core\Manifest\ModuleResourceLoader;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
-use SilverStripe\Forms\HTMLEditor\TinyMCEConfig;
 use SilverStripe\Forms\LiteralField;
 use SilverStripe\ORM\DataObject;
 use SilverStripe\ORM\FieldType\DBField;
@@ -44,7 +42,6 @@ use SilverStripe\Security\Security;
 
         public function LinkID() {
             if ((int) $this->ID > 0) {
-                //$anchor = $this->LinkIDRef();
                 $dialogImg = ModuleResourceLoader::singleton()->resolveURL('pikselin/silverstripe-elemental-footnotes:client/images/footnote-dialog.png');
                 return '<h3>Link ID: <strong style="color: red">' . $this->ID . '</strong><h3><p>This is the element ID for this note. Use this when creating footnote links in content editors. Enter the ID and a title for the link and then click ok in the Footnote link dialog.</p><p><strong>Note:</strong> Using any other method of creating the footnote link may result in an error or broken link.</p><p><img src="'.$dialogImg.'" alt="example dialog"/></p>';
             } else {
