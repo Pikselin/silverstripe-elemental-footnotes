@@ -2,7 +2,7 @@ tinymce.PluginManager.add('footnotelink', function (editor, url) {
     // Add a button that opens a window
     editor.addButton('footnotelink', {
         title: 'Footnote link',
-        image: '/_resources/silverstripe-elemental-footnotes/client/js/TinyMCE/footnotelink.gif',
+        image: '/_resources/vendor/pikselin/silverstripe-elemental-footnotes/client/js/TinyMCE/footnotelink.gif',
         onclick: function () {
             // Open window
             editor.windowManager.open({
