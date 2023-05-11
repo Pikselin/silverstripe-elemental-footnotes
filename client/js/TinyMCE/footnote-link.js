@@ -1,5 +1,4 @@
 tinymce.PluginManager.add('footnotelink', function (editor, url) {
-    // Add a button that opens a window
     editor.addButton('footnotelink', {
         title: 'Footnote link',
         image: '/_resources/vendor/pikselin/silverstripe-elemental-footnotes/client/js/TinyMCE/footnotelink.gif',
@@ -12,13 +11,11 @@ tinymce.PluginManager.add('footnotelink', function (editor, url) {
                     {type: 'textbox', name: 'LinkText', label: 'Link title'},
                 ],
                 onsubmit: function (e) {
-                    // Insert content when the window form is submitted
                     editor.insertContent('<a class="footnote-link" href="#footnote-item-' + e.data.ID + '">'+ e.data.LinkText+'</a>');
                 }
             });
         }
     });
-
     // Adds a menu item to the tools menu
     editor.addMenuItem('footnotelink', {
         text: 'Footnote link',
@@ -37,7 +34,6 @@ tinymce.PluginManager.add('footnotelink', function (editor, url) {
             });
         }
     });
-
     return {
         getMetadata: function () {
             return  {

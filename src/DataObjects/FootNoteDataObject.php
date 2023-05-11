@@ -28,10 +28,6 @@ use SilverStripe\Security\Security;
         ];
         private static $default_sort = 'NotesOrder ASC';
         
-//        public function LinkIDSrc() {
-//            return 'footnote-item-' . $this->ID;
-//        }
-        
         public function LinkIDRef() {
             if ((int) $this->ID > 0) {
                 return DBField::create_field('Text', $this->ID);
@@ -98,7 +94,5 @@ use SilverStripe\Security\Security;
             }
             return Permission::check('CMS_ACCESS_CMSMain', 'any', $member);
         }
-
     }
-
 }

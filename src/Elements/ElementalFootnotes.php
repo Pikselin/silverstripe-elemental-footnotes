@@ -49,9 +49,6 @@ namespace Pikselin\Elemental\Footnotes {
             Requirements::javascript('pikselin/silverstripe-elemental-footnotes:client/js/ElementalFootnotes.js', ['defer' => true]);
         }
 
-        /**
-         * Enforce ChartHeight
-         */
         public function onBeforeWrite() {
             parent::onBeforeWrite();
         }
@@ -72,7 +69,6 @@ namespace Pikselin\Elemental\Footnotes {
                     }
                 }
             }
-
             if ($this->Notes()) {
                 foreach ($this->Notes() as $k => $v) {
                     $anchors[] = $v->LinkIDSrc();
@@ -86,8 +82,7 @@ namespace Pikselin\Elemental\Footnotes {
         public function getCMSFields() {
 
             $this->beforeUpdateCMSFields(function (FieldList $fields) {
-
-
+                
                 $Enumerate = CheckboxField::create('Enumerate', 'Enumerate')->setDescription('Add a numeric index to each footnote in this block.');
 
                 $GridConf = GridFieldConfig_RecordEditor::create(10);
@@ -110,10 +105,6 @@ namespace Pikselin\Elemental\Footnotes {
         }
 
         /**
-         * Internal Elemental block methods
-         */
-
-        /**
          *
          * @return type
          */
@@ -130,8 +121,6 @@ namespace Pikselin\Elemental\Footnotes {
         }
 
         /**
-         * Return file title and thumbnail for summary section of ElementEditor
-         *
          * @return array
          */
         protected function provideBlockSchema() {
@@ -150,7 +139,5 @@ namespace Pikselin\Elemental\Footnotes {
             $blockSchema['content'] = implode(', ', $content);
             return $blockSchema;
         }
-
     }
-
 }

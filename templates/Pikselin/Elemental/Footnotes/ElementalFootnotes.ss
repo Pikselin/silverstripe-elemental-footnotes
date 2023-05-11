@@ -6,14 +6,14 @@
     <div class="footnotes-container">
         <% loop $Notes %>
         <div class="footnote-item">
-        <% if $Top.Enumerate %>
-        <span class="footnotes-index">$Pos</span>
-        <% end_if %>
-        <% if $Content %>
-        <div class="footnotes-note">
-            <div class="footnotes-content">$Content</div>
-        </div>
-        <% end_if %>
+            <% if $Top.Enumerate %>
+            <span class="footnotes-index">$Pos</span>
+            <% end_if %>
+            <% if $Content %>
+            <div class="footnotes-note">
+                <div class="footnotes-content">$Content</div>
+            </div>
+            <% end_if %>
         </div>
         <% end_loop %>
     </div>

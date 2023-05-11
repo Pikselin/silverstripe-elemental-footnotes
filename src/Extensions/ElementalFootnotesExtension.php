@@ -50,25 +50,5 @@ class ElementalFootnotesExtension extends DataExtension //ElementalAreasExtensio
 
         return $anchors;
     }
-
-
-    /**
-     * Call some function over all elements belonging to this page
-     */
-//    private function loopThroughElements(callable $callback): void
-//    {
-//        foreach ($this->owner->hasOne() as $key => $class) {
-//            if ($class !== ElementalArea::class) {
-//                continue;
-//            }
-//            /** @var ElementalArea $area */
-//            $area = $this->owner->$key();
-//            if ($area) {
-//                foreach ($area->Elements() as $element) {
-//                    $callback($element);
-//                }
-//            }
-//        }
-//    }
 }
 
