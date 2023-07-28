@@ -11,10 +11,10 @@ use SilverStripe\ORM\FieldType\DBField;
 use SilverStripe\Security\Permission;
 use SilverStripe\Security\Security;
 
-    class FootNoteDataObject extends DataObject {
-
+    class FootNoteDataObject extends DataObject
+    {
         private static array $db = [
-            'Content' => 'HTMLText',
+            'Content'    => 'HTMLText',
             'NotesOrder' => 'Int',
         ];
         private static array $has_one = [
@@ -24,7 +24,7 @@ use SilverStripe\Security\Security;
         private static string $singular_name = 'Footnote';
         private static string $plural_name = 'Footnotes';
         private static array $summary_fields = [
-            'Content' => 'Content',
+            'Content'   => 'Content',
             'LinkIDRef' => 'ID'
         ];
         private static string $default_sort = 'NotesOrder ASC';
@@ -70,7 +70,8 @@ use SilverStripe\Security\Security;
             return true;
         }
 
-        public function canEdit($member = null) {
+        public function canEdit($member = null)
+        {
             if (!$member) {
                 if (!Security::getCurrentUser()) {
                     return false;
@@ -80,7 +81,8 @@ use SilverStripe\Security\Security;
             return Permission::check('CMS_ACCESS_CMSMain', 'any', $member);
         }
 
-        public function canDelete($member = null) {
+        public function canDelete($member = null)
+        {
             if (!$member) {
                 if (!Security::getCurrentUser()) {
                     return false;
@@ -90,7 +92,8 @@ use SilverStripe\Security\Security;
             return Permission::check('CMS_ACCESS_CMSMain', 'any', $member);
         }
 
-        public function canCreate($member = null, $context = []) {
+        public function canCreate($member = null, $context = [])
+        {
             if (!$member) {
                 if (!Security::getCurrentUser()) {
                     return false;

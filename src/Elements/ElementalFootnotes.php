@@ -15,8 +15,8 @@ namespace Pikselin\Elemental\Footnotes {
     use Symbiote\GridFieldExtensions\GridFieldOrderableRows;
     use function _t;
 
-    class ElementalFootnotes extends BaseElement {
-
+    class ElementalFootnotes extends BaseElement
+    {
         private static string $singular_name = 'Footnote';
         private static string $plural_name = 'Footnotes';
         private static string $icon = 'font-icon-book-open';
@@ -43,17 +43,20 @@ namespace Pikselin\Elemental\Footnotes {
          *
          * Add the remote Javascript here, based on chart type
          */
-        function __construct($record = null, $isSingleton = false, $model = null) {
+        public function __construct($record = null, $isSingleton = false, $model = null)
+        {
             parent::__construct($record, $isSingleton, $model);
 
             Requirements::javascript('pikselin/silverstripe-elemental-footnotes:client/js/ElementalFootnotes.js', ['defer' => true]);
         }
 
-        public function onBeforeWrite() {
+        public function onBeforeWrite()
+        {
             parent::onBeforeWrite();
         }
 
-        public function getAnchorsInContent(): array {
+        public function getAnchorsInContent(): array
+        {
             $anchors = [$this->getAnchor()];
             $anchorRegex = "/\\s+(name|id)\\s*=\\s*([\"'])([^\\2\\s>]*?)\\2|\\s+(name|id)\\s*=\\s*([^\"']+)[\\s +>]/im";
             $allFields = DataObject::getSchema()->fieldSpecs($this);
@@ -63,7 +66,7 @@ namespace Pikselin\Elemental\Footnotes {
                     $parseSuccess = preg_match_all($anchorRegex, $fieldObj->getValue() ?? '', $matches);
                     if ($parseSuccess >= 1) {
                         $fieldAnchors = array_values(array_filter(
-                                        array_merge($matches[3], $matches[5])
+                            array_merge($matches[3], $matches[5])
                         ));
                         $anchors = array_merge($anchors, $fieldAnchors);
                     }
@@ -81,7 +84,6 @@ namespace Pikselin\Elemental\Footnotes {
 
         public function getCMSFields(): FieldList
         {
-
             $this->beforeUpdateCMSFields(function (FieldList $fields) {
                 $fields->removeByName('Notes');
                 $Enumerate = CheckboxField::create('Enumerate', 'Enumerate')->setDescription('Add a numeric index to each footnote in this block.');
@@ -109,7 +111,8 @@ namespace Pikselin\Elemental\Footnotes {
          *
          * @return string
          */
-        public function getType() : string {
+        public function getType(): string
+        {
             return _t(__CLASS__ . '.BlockType', 'Footnotes');
         }
 
@@ -117,14 +120,16 @@ namespace Pikselin\Elemental\Footnotes {
          *
          * @return string
          */
-        public function getSummary() : string {
+        public function getSummary(): string
+        {
             return '';
         }
 
         /**
          * @return array
          */
-        protected function provideBlockSchema() : array {
+        protected function provideBlockSchema(): array
+        {
             $blockSchema = parent::provideBlockSchema();
 
             $content = [];

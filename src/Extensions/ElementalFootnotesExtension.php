@@ -13,7 +13,6 @@ use SilverStripe\ORM\DataExtension;
  */
 class ElementalFootnotesExtension extends DataExtension //ElementalAreasExtension
 {
-
     /**
      * @see SiteTree::getAnchorsOnPage()
      */
@@ -44,11 +43,10 @@ class ElementalFootnotesExtension extends DataExtension //ElementalAreasExtensio
                     $anchors = array_merge($anchors, $element->getAnchorsInContent());
                 }
             }
-        }      
+        }
 
         $this->extend('updateAnchorsOnPage', $anchors);
 
         return $anchors;
     }
 }
-
