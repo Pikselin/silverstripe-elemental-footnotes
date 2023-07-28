@@ -17,23 +17,23 @@ namespace Pikselin\Elemental\Footnotes {
 
     class ElementalFootnotes extends BaseElement {
 
-        private static $singular_name = 'Footnote';
-        private static $plural_name = 'Footnotes';
-        private static $icon = 'font-icon-book-open';
-        private static $table_name = 'ElementalFootnotes';
-        private static $db = [
+        private static string $singular_name = 'Footnote';
+        private static string $plural_name = 'Footnotes';
+        private static string $icon = 'font-icon-book-open';
+        private static string $table_name = 'ElementalFootnotes';
+        private static array $db = [
             'Enumerate' => 'Boolean'
         ];
-        private static $has_many = [
+        private static array $has_many = [
             'Notes' => FootNoteDataObject::class
         ];
-        private static $defaults = [
+        private static array $defaults = [
             'Title' => 'References'
         ];
-        private static $cascade_deletes = [
+        private static array $cascade_deletes = [
             'Notes',
         ];
-        private static $inline_editable = false;
+        private static bool $inline_editable = false;
 
         /**
          *
@@ -79,10 +79,11 @@ namespace Pikselin\Elemental\Footnotes {
             return $anchors;
         }
 
-        public function getCMSFields() {
+        public function getCMSFields(): FieldList
+        {
 
             $this->beforeUpdateCMSFields(function (FieldList $fields) {
-                
+                $fields->removeByName('Notes');
                 $Enumerate = CheckboxField::create('Enumerate', 'Enumerate')->setDescription('Add a numeric index to each footnote in this block.');
 
                 $GridConf = GridFieldConfig_RecordEditor::create(10);
@@ -96,7 +97,7 @@ namespace Pikselin\Elemental\Footnotes {
                 }
 
                 $Notes = new GridField('Notes', 'Notes', $this->Notes(), $GridConf);
-                $Notes->setDescription('Add one or more series configs and order them manually.');
+                $Notes->setDescription('Add one or more footnotes for this page. Drag footnotes to reorder.');
 
                 $fields->addFieldToTab('Root.Main', $Enumerate);
                 $fields->addFieldToTab('Root.Main', $Notes);
@@ -106,9 +107,9 @@ namespace Pikselin\Elemental\Footnotes {
 
         /**
          *
-         * @return type
+         * @return string
          */
-        public function getType() {
+        public function getType() : string {
             return _t(__CLASS__ . '.BlockType', 'Footnotes');
         }
 
@@ -116,14 +117,14 @@ namespace Pikselin\Elemental\Footnotes {
          *
          * @return string
          */
-        public function getSummary() {
+        public function getSummary() : string {
             return '';
         }
 
         /**
          * @return array
          */
-        protected function provideBlockSchema() {
+        protected function provideBlockSchema() : array {
             $blockSchema = parent::provideBlockSchema();
 
             $content = [];
