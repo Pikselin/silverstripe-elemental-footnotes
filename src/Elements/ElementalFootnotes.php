@@ -30,9 +30,7 @@ namespace Pikselin\Elemental\Footnotes {
         private static array $defaults = [
             'Title' => 'References'
         ];
-        private static array $cascade_deletes = [
-            'Notes',
-        ];
+
         private static bool $inline_editable = false;
 
         /**
