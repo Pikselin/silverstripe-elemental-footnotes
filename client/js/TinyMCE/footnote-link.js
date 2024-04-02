@@ -9,8 +9,8 @@ tinymce.PluginManager.add('footnotelink', function (editor, url) {
       body: {
         type: 'panel',
         items: [
-                    {type: 'textbox', name: 'ID', label: 'ID of footnote'},
-                    {type: 'textbox', name: 'LinkText', label: 'Link title'},
+                    {type: 'input', name: 'ID', label: 'ID of footnote'},
+                    {type: 'input', name: 'LinkText', label: 'Link title'},
         ]
       },
                 buttons: [
