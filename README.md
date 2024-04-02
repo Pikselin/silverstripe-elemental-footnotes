@@ -19,3 +19,5 @@ You will need to add the git repository to your composer file as this is a priva
     ]
 ```
 
+## Writing a custom plugin
+https://www.tiny.cloud/docs/advanced/creating-a-plugin/
