@@ -2,33 +2,33 @@ tinymce.PluginManager.add('footnotelink', function (editor, url) {
     editor.ui.registry.addButton('footnotelink', {
         text: 'Footnote link',
         tooltip: 'Add a link to a footnote',
-        icon: 'save'
+        icon: 'save',
         onAction: function () {
             // Open window
             editor.windowManager.open({
                 title: 'Footnote link',
-      body: {
-        type: 'panel',
-        items: [
-                    {type: 'input', name: 'ID', label: 'ID of footnote'},
-                    {type: 'input', name: 'LinkText', label: 'Link title'},
-        ]
-      },
-                buttons: [
-        {
-          type: 'cancel',
-          text: 'Close'
-        },
-        {
-          type: 'submit',
-          text: 'Save',
-          primary: true
-        }
-                    ],                
-                onsubmit: function (api) {
-                    var data = api.getData();
-                    editor.insertContent('<a class="footnote-link" href="#footnote-item-' + data.ID + '">'+ data.LinkText+'</a>');
+              body: {
+                type: 'panel',
+                items: [
+                            {type: 'input', name: 'ID', label: 'ID of footnote'},
+                            {type: 'input', name: 'LinkText', label: 'Link title'},
+                ]
+              },
+              buttons: [
+                {
+                  type: 'cancel',
+                  text: 'Close'
+                },
+                {
+                  type: 'submit',
+                  text: 'Save',
+                  primary: true
                 }
+              ],                
+        onsubmit: function (api) {
+            var data = api.getData();
+            editor.insertContent('<a class="footnote-link" href="#footnote-item-' + data.ID + '">'+ data.LinkText+'</a>');
+        }
             });
         }
     });
