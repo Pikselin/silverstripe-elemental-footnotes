@@ -6,10 +6,13 @@ tinymce.PluginManager.add('footnotelink', function (editor, url) {
             // Open window
             editor.windowManager.open({
                 title: 'Footnote link',
-                body: [
+      body: {
+        type: 'panel',
+        items: [
                     {type: 'textbox', name: 'ID', label: 'ID of footnote'},
                     {type: 'textbox', name: 'LinkText', label: 'Link title'},
-                ],
+        ]
+      },
                 buttons: [
         {
           type: 'cancel',
