@@ -5,7 +5,7 @@ tinymce.PluginManager.add('footnotelink', function (editor, url) {
         icon: 'save',
         onAction: function () {
             // Open window
-            editor.windowManager.open({
+            return editor.windowManager.open({
                 title: 'Footnote link',
               body: {
                 type: 'panel',
@@ -25,9 +25,10 @@ tinymce.PluginManager.add('footnotelink', function (editor, url) {
                   primary: true
                 }
               ],                
-        onsubmit: function (api) {
+        onSubmit: function (api) {
             var data = api.getData();
             editor.insertContent('<a class="footnote-link" href="#footnote-item-' + data.ID + '">'+ data.LinkText+'</a>');
+            api.close();
         }
             });
         }
