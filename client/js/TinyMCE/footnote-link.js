@@ -24,8 +24,9 @@ tinymce.PluginManager.add('footnotelink', function (editor, url) {
           primary: true
         }
                     ],                
-                onsubmit: function (e) {
-                    editor.insertContent('<a class="footnote-link" href="#footnote-item-' + e.data.ID + '">'+ e.data.LinkText+'</a>');
+                onsubmit: function (api) {
+                    var data = api.getData();
+                    editor.insertContent('<a class="footnote-link" href="#footnote-item-' + data.ID + '">'+ data.LinkText+'</a>');
                 }
             });
         }
