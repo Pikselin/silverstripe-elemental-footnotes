@@ -1,7 +1,8 @@
 tinymce.PluginManager.add('footnotelink', function (editor, url) {
     editor.ui.registry.addButton('footnotelink', {
         text: 'Footnote link',
-        image: '/_resources/vendor/pikselin/silverstripe-elemental-footnotes/client/js/TinyMCE/footnotelink.gif',
+        tooltip: 'Add a link to a footnote',
+        icon: 'save'
         onAction: function () {
             // Open window
             editor.windowManager.open({
