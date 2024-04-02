@@ -27,7 +27,7 @@ tinymce.PluginManager.add('footnotelink', function (editor, url) {
                 url: 'https://www.tinymce.com',
                 width: 800,
                 height: 600,
-                buttons: [{
+                buttons: [
         {
           type: 'cancel',
           text: 'Close'
@@ -37,7 +37,7 @@ tinymce.PluginManager.add('footnotelink', function (editor, url) {
           text: 'Save',
           primary: true
         }
-                    }]
+                    ]
             });
         }
     });
