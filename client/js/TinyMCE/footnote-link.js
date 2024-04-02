@@ -10,6 +10,17 @@ tinymce.PluginManager.add('footnotelink', function (editor, url) {
                     {type: 'textbox', name: 'ID', label: 'ID of footnote'},
                     {type: 'textbox', name: 'LinkText', label: 'Link title'},
                 ],
+                buttons: [
+        {
+          type: 'cancel',
+          text: 'Close'
+        },
+        {
+          type: 'submit',
+          text: 'Save',
+          primary: true
+        }
+                    ]                
                 onsubmit: function (e) {
                     editor.insertContent('<a class="footnote-link" href="#footnote-item-' + e.data.ID + '">'+ e.data.LinkText+'</a>');
                 }
@@ -27,17 +38,6 @@ tinymce.PluginManager.add('footnotelink', function (editor, url) {
                 url: 'https://www.tinymce.com',
                 width: 800,
                 height: 600,
-                buttons: [
-        {
-          type: 'cancel',
-          text: 'Close'
-        },
-        {
-          type: 'submit',
-          text: 'Save',
-          primary: true
-        }
-                    ]
             });
         }
     });
