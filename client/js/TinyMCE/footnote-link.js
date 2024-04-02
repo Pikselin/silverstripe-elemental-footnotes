@@ -1,8 +1,8 @@
 tinymce.PluginManager.add('footnotelink', function (editor, url) {
-    editor.addButton('footnotelink', {
-        title: 'Footnote link',
+    editor.ui.registry.addButton('footnotelink', {
+        text: 'Footnote link',
         image: '/_resources/vendor/pikselin/silverstripe-elemental-footnotes/client/js/TinyMCE/footnotelink.gif',
-        onclick: function () {
+        onAction: function () {
             // Open window
             editor.windowManager.open({
                 title: 'Footnote link',
@@ -17,7 +17,7 @@ tinymce.PluginManager.add('footnotelink', function (editor, url) {
         }
     });
     // Adds a menu item to the tools menu
-    editor.addMenuItem('footnotelink', {
+    editor.ui.registry.addMenuItem('footnotelink', {
         text: 'Footnote link',
         context: 'tools',
         onclick: function () {
