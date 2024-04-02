@@ -28,8 +28,15 @@ tinymce.PluginManager.add('footnotelink', function (editor, url) {
                 width: 800,
                 height: 600,
                 buttons: [{
-                        text: 'Close',
-                        onclick: 'close'
+        {
+          type: 'cancel',
+          text: 'Close'
+        },
+        {
+          type: 'submit',
+          text: 'Save',
+          primary: true
+        }
                     }]
             });
         }
