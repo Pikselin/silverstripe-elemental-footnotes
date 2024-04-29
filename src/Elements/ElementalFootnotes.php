@@ -72,7 +72,7 @@ namespace Pikselin\Elemental\Footnotes {
             }
             if ($this->Notes()) {
                 foreach ($this->Notes() as $k => $v) {
-                    $anchors[] = $v->LinkIDSrc();
+                    $anchors[] = $v->LinkIDRef();
                 }
             }
             $anchors = array_unique($anchors);
